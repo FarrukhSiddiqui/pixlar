@@ -19,12 +19,12 @@ body
 {
 	position: relative;
 	width: 380px;
-	height: 420px;
+	height: 480px;
 	background: #1c1c1c;
 	border-radius: 8px;
 	overflow: hidden;
 }
-.box::before 
+.box::before
 {
 	content: '';
 	z-index: 1;
@@ -32,7 +32,7 @@ body
 	top: -50%;
 	left: -50%;
 	width: 380px;
-	height: 420px;
+	height: 480px;
 	transform-origin: bottom right;
 	background: linear-gradient(0deg,transparent,#45f3ff,#45f3ff);
 	animation: animate 6s linear infinite;
@@ -45,7 +45,7 @@ body
 	top: -50%;
 	left: -50%;
 	width: 380px;
-	height: 420px;
+	height: 480px;
 	transform-origin: bottom right;
 	background: linear-gradient(0deg,transparent,#45f3ff,#45f3ff);
 	animation: animate 6s linear infinite;
@@ -80,6 +80,67 @@ h2
 	text-align: center;
 	letter-spacing: 0.1em;
 }
+
+.emailBox 
+{
+	position: relative;
+	width: 300px;
+	margin-top: 35px;
+}
+.emailBox input 
+{
+	position: relative;
+	width: 100%;
+	padding: 20px 10px 10px;
+	background: transparent;
+	outline: none;
+	box-shadow: none;
+	border: none;
+	color: #23242a;
+	font-size: 1em;
+	letter-spacing: 0.05em;
+	transition: 0.5s;
+	z-index: 10;
+}
+.emailBox span 
+{
+	position: absolute;
+	left: 0;
+	padding: 20px 0px 10px;
+	pointer-events: none;
+	font-size: 1em;
+	color: #8f8f8f;
+	letter-spacing: 0.05em;
+	transition: 0.5s;
+}
+.emailBox input:not(:placeholder-shown) ~ span,
+.emailBox input:focus ~ span 
+{
+	color: #45f3ff;
+	transform: translateX(0px) translateY(-34px);
+	font-size: 0.75em;
+}
+.emailBox i 
+{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 2px;
+	background: #45f3ff;
+	border-radius: 4px;
+	overflow: hidden;
+	transition: 0.5s;
+	pointer-events: none;
+	z-index: 9;
+}
+.emailBox input:not(:placeholder-shown) ~ i,
+.emailBox input:focus ~ i 
+{
+	height: 44px;
+}
+
+
 .inputBox 
 {
 	position: relative;
