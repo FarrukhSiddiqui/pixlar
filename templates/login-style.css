@@ -19,7 +19,7 @@ body
 {
 	position: relative;
 	width: 380px;
-	height: 480px;
+	height: 420px;
 	background: #1c1c1c;
 	border-radius: 8px;
 	overflow: hidden;
@@ -32,7 +32,7 @@ body
 	top: -50%;
 	left: -50%;
 	width: 380px;
-	height: 480px;
+	height: 420px;
 	transform-origin: bottom right;
 	background: linear-gradient(0deg,transparent,#45f3ff,#45f3ff);
 	animation: animate 6s linear infinite;
@@ -45,7 +45,7 @@ body
 	top: -50%;
 	left: -50%;
 	width: 380px;
-	height: 480px;
+	height: 420px;
 	transform-origin: bottom right;
 	background: linear-gradient(0deg,transparent,#45f3ff,#45f3ff);
 	animation: animate 6s linear infinite;
@@ -88,7 +88,7 @@ h2
 	width: 300px;
 	margin-top: 35px;
 }
-.emailBox input 
+.emailBox input
 {
 	position: relative;
 	width: 100%;
@@ -103,7 +103,7 @@ h2
 	transition: 0.5s;
 	z-index: 10;
 }
-.emailBox span 
+.emailBox span
 {
 	position: absolute;
 	left: 0;
@@ -121,7 +121,7 @@ h2
 	transform: translateX(0px) translateY(-34px);
 	font-size: 0.75em;
 }
-.emailBox i 
+.emailBox i
 {
 	position: absolute;
 	left: 0;
@@ -136,11 +136,10 @@ h2
 	z-index: 9;
 }
 .emailBox input:not(:placeholder-shown) ~ i,
-.emailBox input:focus ~ i 
+.emailBox input:focus ~ i
 {
 	height: 44px;
 }
-
 
 .inputBox 
 {
@@ -148,7 +147,7 @@ h2
 	width: 300px;
 	margin-top: 35px;
 }
-.inputBox input 
+.inputBox input
 {
 	position: relative;
 	width: 100%;
