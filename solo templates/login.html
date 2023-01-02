@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Log In</title>
+	
+	<!-- Bootstrap v5.3.0-alpha1 -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+	<!-- CSS File -->
+	<link rel="stylesheet" href="login-style.css">
+</head>
+<body>
+	<div class="box needs-validation">
+		<form autocomplete="off">
+			<h2>Log In</h2>
+
+			<div class="emailBox was-validated">
+				<input placeholder=" " type="email" required="required" autocomplete="nope">
+				<span>Email</span>
+				<i></i>
+
+				<div class="invalid-feedback">Please a valid email!</div>
+
+			</div>
+
+			<div class="inputBox was-validated">
+				<input type="password" required="required">
+				<span>Password</span>
+				<i></i>
+
+				<div class="invalid-feedback">Please enter a valid password!</div>
+
+			</div>
+
+			<div class="links">
+				<a href="#">Forgot Password ?</a>
+				<a href="#">Signup</a>
+			</div>
+			<input type="submit" value="Login">
+		</form>
+	</div>
+</body>
+</html>

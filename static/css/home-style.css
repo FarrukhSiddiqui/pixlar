@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+*
+{
+    text: red;
+    background-color: #1c1c1c;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+.roundbg
+{
+    content: '';
+    display: flex;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #2a2a2a;
+    position: absolute;
+    clip-path: circle(70% at right);
+}
+.container
+{
+    width: 100%;
+    margin: 0;
+    padding-left: 80px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+.heading
+{
+    margin: 0px;
+    padding: 0px;
+    width: 50%;
+    color: white;
+    font-size: 36pt;
+    background-color: transparent;
+    display: flex;
+}
+.landingtext
+{
+    color: #dddddd;
+    width: 40%;
+    font-size: 12pt;
+}
+.buttons
+{
+    width:50%;
+    margin-left: -30px;
+}
+.btn
+{
+    width: 120px;
+    height: 50px;
+    color: #1c1c1c;
+    background-color: #45f3ff;
+    display: inline-block;
+    font-weight: 600;
+}
+.login
+{
+    margin: 5%;
+    margin-right: 0px;
+}
+.login:hover
+{
+    background-color: #3de0ec;
+}
+.signup
+{
+    margin: 5%;
+}
+.signup:hover
+{
+    background-color: #3de0ec;
+}
+.guest
+{
+    width: 200px;
+    margin-left: 5%;
+}
+.guest:hover
+{
+    background-color: #3de0ec;
+}
+.roundimageframe
+{
+    color: white;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    background-color: #2a2a2a;
+    width: 55%;
+    margin-left: 45%;
+}
+.carousel
+{
+    width:100%;
+}
+.carousel-indicators [data-bs-target]
+{
+    box-sizing: content-box;
+    flex: 0 1 auto;
+    width: 10px; /* change width */
+    height: 10px; /* change height */
+    padding: 0;
+    margin-left: 8px;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    opacity: .5;
+    transition: opacity .6s ease;
+    border-radius: 100%; // /* add border-radius */
+}
+.carousel-indicators
+{
+    background-color: transparent;
+}
+.carousel-caption, .carousel-caption h5
+{
+    background-color: transparent;
+    color:#000000;
+    text-shadow: -1px 0 #45f3ff, 0 1px #45f3ff, 1px 0 #45f3ff, 0 -1px #45f3ff;
+    top:30px;
+    bottom: auto;
+    font-size: 20pt;
+    font-weight: 600;
+}
+.carousel-caption p
+{
+    background-color: transparent;
+    color:#000000;
+    text-shadow: -1px 0 #45f3ff, 0 1px #45f3ff, 1px 0 #45f3ff, 0 -1px #45f3ff;
+    top:50px;
+    bottom: auto;
+    font-size: 14pt;
+    font-weight: 550;
+}
+.logo img
+{
+    width:150px;
+    margin-left: 20px;
+}
