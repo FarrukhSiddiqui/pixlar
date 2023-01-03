@@ -16,19 +16,48 @@
                         <img src="{% static 'images/home1.jpg' %}" class="d-block w-100" alt="{% static 'images/home1.jpg' %}"/> -->
 <body>
 
-    <div class="container text-center">
-      <div class="row">
+    <div class="container">
+      <div class="topbar row vw-100">
+        <div class="logo col"><img src="logo.svg" alt="logo" class="d-block"></div>
+        <div class="col" id="filenamebox"><input type="text" required="required" autocomplete="nope" name="filenamebox" value="none"></div>
+        <div class="col" id="popformtext">Popular Formats</div>
         <div class="col">
-          Column
+          <div class="dropdown"></div>
+            <button class="btn btn-secondary dropdown-toggle formatdropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown button
+            </button>
+            <ul class="dropdown-menu formatdropdownitems">
+              <li><a class="dropdown-item" href="#">JPG</a></li>
+              <li><a class="dropdown-item" href="#">PNG</a></li>
+              <li><a class="dropdown-item" href="#">SVG</a></li>
+            </ul>
         </div>
         <div class="col">
-          Column
+          <input class="btn" id="undobutton" value="UNDO" type="submit">
         </div>
         <div class="col">
-          Column
+          <input class="btn" id="savebutton" value="Save" type="submit">
+        </div>
+        <div class="col">
+          <input class="btn" id="downloadbutton" value="Download" type="submit">
+        </div>
+        <div class="col">
+          <div class="dropdown"></div>
+            <button class="btn btn-secondary dropdown-toggle formatdropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Username
+            </button>
+            <ul class="dropdown-menu formatdropdownitems">
+              <li><a class="dropdown-item" href="#">Home</a></li>
+              <li><a class="dropdown-item" href="#">Change User</a></li>
+              <li><a class="dropdown-item" href="#">Log Out</a></li>
+            </ul>
+        </div>
+      </div>
+      <div class="mainbox row">
+        <div class="leftbar col">
+        
         </div>
       </div>
     </div>
-
 </body>
 </html>

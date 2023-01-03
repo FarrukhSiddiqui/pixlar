@@ -15,6 +15,9 @@ def login_view(request, *args, **kwargs):
 def signup_view(request, *args, **kwargs):
     signup_context={ 'media': os.path.join(BASE_DIR, 'media\\')}
     return render(request, 'signup.html', signup_context)
+def editor_view(request, *args, **kwargs):
+    editor_context={ 'media': os.path.join(BASE_DIR, 'media\\')}
+    return render(request, 'editor.html', editor_context)
 
 
 
