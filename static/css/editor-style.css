@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+*, body
+{
+    color: #dedede;
+    background-color: #1c1c1c;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+}
+.container
+{
+    display: inline;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+}
+.topbar
+{
+    max-height: 100px;
+}
+.logo
+{
+    max-width: 200px;
+}
+#filenamebox
+{
+    margin-top: 10px;
+    max-width: 20%;
+    max-height:100px;
+}
+#popformtext
+{
+    margin-top: 20px;
+    max-width: 10vw;
+    margin-left: 10px;
+    margin-right: -20px;
+}
+.logo img
+{
+    margin: 0px;
+    padding: 0px;
+    width: 100px;
+    height: 100px;
+    margin-left: 20px;
+}
+.topbar input
+{
+    margin-top: 20px;
+    margin-left: 0px;
+    border: 1px #aaaaaa solid;
+    border-radius: 4px;
+}
+.formatdropdown
+{
+    background-color: transparent;
+    margin-top: 20px;
+    color: #dddddd;
+}
+.formatdropdownitems
+{
+    background-color: transparent;
+    color: #000000;
+}
+.dropdown-menu a
+{
+    color: #aaaaaa !important;
+}
+.dropdown-menu a:hover
+{
+    background-color: #333333;
+}
+#undobutton
+{
+    margin-left: 40%;
+    margin-right: 10%;
+    color: #aaaaaa;
+}
+#savebutton
+{
+    margin-left: 20%;
+    color: #aaaaaa;
+}
+#downloadbutton
+{
+    margin-left: -30%;
+    color: #aaaaaa;
+}

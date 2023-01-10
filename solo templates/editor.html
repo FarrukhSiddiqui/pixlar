@@ -8,18 +8,34 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
+    <!-- Bootstrap icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
     <!-- CSS File -->
     <link rel="stylesheet" href="editor-style.css">
+
+    <!-- JS File -->
+    <script src="editor-script.js"></script>
+
+    <!-- Cropper JS -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css"/>
 
 </head>
                       <!-- IMAGE FORMATTING FOR DJANGO WITH STATIC ASSETS
                         <img src="{% static 'images/home1.jpg' %}" class="d-block w-100" alt="{% static 'images/home1.jpg' %}"/> -->
 <body>
 
-    <div class="container">
+    <div class="container h-100">
       <div class="topbar row vw-100">
         <div class="logo col"><img src="logo.svg" alt="logo" class="d-block"></div>
-        <div class="col" id="filenamebox"><input type="text" required="required" autocomplete="nope" name="filenamebox" value="none"></div>
+        <div class="col" id="fileuploadbox">
+          <input type="file" id="fileupload" accept=".png, .jpeg, .jpg" onchange="upload_image(this)" />
+          <label for="fileupload" class="btn">Upload</label>
+        </div>
+        <div class="col" id="filenamebox">
+          <input type="text" id="filename"/>
+        </div>
         <div class="col" id="popformtext">Popular Formats</div>
         <div class="col">
           <div class="dropdown"></div>
@@ -53,11 +69,161 @@
             </ul>
         </div>
       </div>
-      <div class="mainbox row">
+        <span></span>
+      <div class="mainbox row h-100">
         <div class="leftbar col">
-        
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <button class="btn" id="transformButton" aria-current="page" onclick="toggleTransform()"><i class="bi bi-arrow-left-right"></i> TRANSFORM</button>
+            </li>
+            <li class="nav-item">
+              <button class="btn" id="adjustButton" onclick="toggleAdjust()"><i class="bi bi-sliders"></i> ADJUST</button>
+            </li>
+            <li class="nav-item">
+              <button class="btn" id="annotationButton" onclick="toggleAnnotation()"><i class="bi bi-boxes"></i> ANNOTATIONS</button>
+            </li>
+            <li class="nav-item">
+              <button class="btn" id="textButton" onclick="toggleText()"><i class="bi bi-textarea-t"></i> TEXT</button>
+            </li>
+            <li class="nav-item">
+              <button class="btn" id="filterButton" onclick="toggleFilter()"><i class="bi bi-layers-half"></i> FILTERS</butt>
+            </li>
+          </ul>
+        </div>
+        <div class="centercanvas col img-container">
+          <canvas id="imagecanvas" class="cropper-container"></canvas>
+        </div>
+        <div class="rightbar col text-center" id="toggleMenu">
+
+          <div id="transformDiv">
+            <button class="btn transformMenu" onclick="startCrop()">CROP</button>
+            <button class="btn transformMenu" id="confirmCrop">CONFIRM CROP</button>
+            <button class="btn transformMenu" onclick="startRotate()">ROTATE</button>
+            <button class="btn transformMenu" id="rotateRight"><i class="bi bi-arrow-clockwise"></i> 90° CLOCKWISE</button>
+            <button class="btn transformMenu" id="rotateLeft"><i class="bi bi-arrow-counterclockwise"></i> 90° ANTICLOCKWISE</button>
+          </div>
+
+          <div id="adjustDiv">
+            <p style="margin-top: 20px;">BRIGHTNESS</p>
+            <input type="range" min="-100" max="100" value="0" class="adjustMenu" id="brightnessSlider" onchange="updateBrightness()">
+            <label id="brightnessValue" for="brightnessSlider" class="d-block">0</label>
+            <p style="margin-top: 20px;">CONTRAST</p>
+            <input type="range" min="-100" max="100" value="0" class="adjustMenu" id="contrastSlider" onchange="updateContrast()">
+            <label id="contrastValue" for="contrastSlider" class="d-block">0</label>
+          </div>
+        </div>
+
+       <!-- <button class="btn transformMenu">CROP</button>
+            <button class="btn transformMenu">CONFIRM CROP</button>
+            <button class="btn transformMenu">ROTATE</button>
+            <button class="btn transformMenu"><i class="bi bi-arrow-clockwise"></i> 90° CLOCKWISE</button>
+            <button class="btn transformMenu"><i class="bi bi-arrow-counterclockwise"></i> 90° ANTICLOCKWISE</button>
+
+          </div>
+            <button class="btn transformMenu">CROP</button>
+            <button class="btn transformMenu">CONFIRM CROP</button>
+            <button class="btn transformMenu">ROTATE</button>
+            <button class="btn transformMenu"><i class="bi bi-arrow-clockwise"></i> 90° CLOCKWISE</button>
+            <button class="btn transformMenu"><i class="bi bi-arrow-counterclockwise"></i> 90° ANTICLOCKWISE</button>
+
+          </div>
+            <button class="btn transformMenu">CROP</button>
+            <button class="btn transformMenu">CONFIRM CROP</button>
+            <button class="btn transformMenu">ROTATE</button>
+            <button class="btn transformMenu"><i class="bi bi-arrow-clockwise"></i> 90° CLOCKWISE</button>
+            <button class="btn transformMenu"><i class="bi bi-arrow-counterclockwise"></i> 90° ANTICLOCKWISE</button>
+          </div> -->
         </div>
       </div>
     </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+<script type="text/javascript">
+
+function startCrop() {
+  const canvas = document.getElementById("imagecanvas");
+  var cropper = new Cropper(canvas, {
+      aspectRatio: 0,
+      viewMode: 3,
+      modal: false,
+      guides: false,
+      center: false,
+      highlight: false,
+      background: false,
+      autoCrop: false,
+      autoCropArea: 1,
+      minCanvasWidth: 10,
+      minCanvasHeight: 10,
+      dragMode: 'crop',
+  });
+    document.getElementById('confirmCrop').addEventListener('click', function(){
+    var croppedImage = cropper.getCroppedCanvas();
+    var canvas = document.getElementById('imagecanvas');
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerHeight;
+    var ctx = canvas.getContext('2d');
+    var hRatio = canvas.width / croppedImage.width;
+    var vRatio = canvas.height / croppedImage.height;
+    var ratio  = Math.min ( hRatio, vRatio );
+    var centerShift_x = ( canvas.width - croppedImage.width*ratio ) / 2;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(croppedImage, 0,0, croppedImage.width, croppedImage.height, centerShift_x, 0, croppedImage.width*ratio,croppedImage.height*ratio);
+    cropper.destroy();
+  });
+}
+
+function startRotate() {
+  const canvas = document.getElementById("imagecanvas");
+  var cropper = new Cropper(canvas, {
+      aspectRatio: 0,
+      viewMode: 0,
+      modal: false,
+      guides: false,
+      center: false,
+      highlight: false,
+      background: false,
+      autoCrop: false,
+      autoCropArea: 1,
+      minCanvasWidth: 10,
+      minCanvasHeight: 10,
+      dragMode: 'move',
+  });
+  document.getElementById('rotateRight').addEventListener('click', function(){
+    var canvas = document.getElementById('imagecanvas');
+    canvas.width=window.innerHeight;
+    canvas.height=window.innerWidth;
+    cropper.rotate(90);
+    cropper.scale(1, 1);
+    var rotatedImage = cropper.getCroppedCanvas();
+    var ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.drawImage(rotatedImage, 0, 0, canvas.height, canvas.width);
+  });
+  document.getElementById('rotateLeft').addEventListener('click', function(){
+    var canvas = document.getElementById('imagecanvas');
+    canvas.width=window.innerHeight;
+    canvas.height=window.innerWidth;
+    cropper.rotate(-90);
+    cropper.scale(1, 1);
+    var rotatedImage = cropper.getCroppedCanvas();
+    var ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.drawImage(rotatedImage, 0, 0, canvas.height, canvas.width);
+  });
+  document.getElementById('confirmCrop').addEventListener('click', function(){
+    var croppedImage = cropper.getCroppedCanvas();
+    var canvas = document.getElementById('imagecanvas');
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerHeight;
+    var ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    cropper.scale(1, 1);
+    var newImage = document.createElement("img");
+    newImage.src = croppedImage.toDataURL();
+    document.body.appendChild(newImage);
+    cropper.destroy();
+    ctx.drawImage(newImage, 0, 0, newImage.width, newImage.height);
+  });
+}
+</script>
 </body>
 </html>

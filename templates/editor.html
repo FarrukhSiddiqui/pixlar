@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    
+    <!-- Bootstrap v5.3.0-alpha1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href="{% static 'css/editor-style.css' %}">
+
+</head>
+                      <!-- IMAGE FORMATTING FOR DJANGO WITH STATIC ASSETS
+                        <img src="{% static 'images/home1.jpg' %}" class="d-block w-100" alt="{% static 'images/home1.jpg' %}"/> -->
+<body>
+
+    <div class="container">
+      <div class="topbar row vw-100">
+        <div class="logo col"><img src="{% static 'images/logo.svg' %}" alt="logo" class="d-block"></div>
+        <div class="col" id="filenamebox"><input type="text" required="required" autocomplete="nope" name="filenamebox" value="none"></div>
+        <div class="col" id="popformtext">Popular Formats</div>
+        <div class="col">
+          <div class="dropdown"></div>
+            <button class="btn btn-secondary dropdown-toggle formatdropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown button
+            </button>
+            <ul class="dropdown-menu formatdropdownitems">
+              <li><a class="dropdown-item" href="#">JPG</a></li>
+              <li><a class="dropdown-item" href="#">PNG</a></li>
+              <li><a class="dropdown-item" href="#">SVG</a></li>
+            </ul>
+        </div>
+        <div class="col">
+          <input class="btn" id="undobutton" value="UNDO" type="submit">
+        </div>
+        <div class="col">
+          <input class="btn" id="savebutton" value="Save" type="submit">
+        </div>
+        <div class="col">
+          <input class="btn" id="downloadbutton" value="Download" type="submit">
+        </div>
+        <div class="col">
+          <div class="dropdown"></div>
+            <button class="btn btn-secondary dropdown-toggle formatdropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Username
+            </button>
+            <ul class="dropdown-menu formatdropdownitems">
+              <li><a class="dropdown-item" href="#">Home</a></li>
+              <li><a class="dropdown-item" href="#">Change User</a></li>
+              <li><a class="dropdown-item" href="#">Log Out</a></li>
+            </ul>
+        </div>
+      </div>
+      <div class="mainbox row">
+        <div class="leftbar col">
+          
+        </div>
+      </div>
+    </div>
+</body>
+</html>
