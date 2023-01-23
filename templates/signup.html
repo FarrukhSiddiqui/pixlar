@@ -18,7 +18,7 @@
 			<h2>Sign Up</h2>
 
 			<div class="inputBox was-validated">
-				<input type="text" required="required">
+				<input type="text" required="required" name="username">
 				<span>Userame</span>
 				<!-- expanding box -->
 				<i></i>
@@ -28,7 +28,7 @@
 			</div>
 
 			<div class="emailBox was-validated">
-				<input placeholder=" " type="email" required="required" autocomplete="nope">
+				<input placeholder=" " type="email" required="required" autocomplete="nope" name="email">
 				<span>Email</span>
 				<i></i>
 
@@ -37,7 +37,7 @@
 			</div>
 
 			<div class="inputBox was-validated">
-				<input type="password" required="required">
+				<input type="password" required="required" name="password">
 				<span>Password</span>
 				<i></i>
 
@@ -52,5 +52,16 @@
 			<input type="submit" value="Signup">
 		</form>
 	</div>
+
+<script type="text/javascript">
+if ('{{user_exists}}' == 'False') {
+	
+	window.location.href="{% url 'Index'%}"
+}
+else if ('{{user_exists}}' == 'True') {
+	alert('User already exists')
+}
+</script>
+
 </body>
 </html>

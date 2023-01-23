@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     #thirdparty own
     'pages',
+    'images',
 ]
 
 MIDDLEWARE = [

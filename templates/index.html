@@ -7,14 +7,29 @@
     <link rel="stylesheet" href="{% static 'index/styles.css' %}" />
   </head>
   <body>
+    <input type="file" id="imageupload" onchange="upload_image(this)">
+
     <div class="my-editor"></div>
 
+    <script type="text/javascript">
+    </script>
     <script type="module">
+      function upload_image(item){
+        var img = new Image();
+        // alert(URL.createObjectURL(item.files[0]));
+        img.src = URL.createObjectURL(item.files[0]);
+        editor.src = img;
+      };
+      window.upload_image=upload_image;
+      alert('{{image.url}}');
+      var reader = new FileReader();
+      var inp = document.getElementById('imageupload');
       import { appendDefaultEditor } from "{% static 'index/pintura.js' %}";
 
       const editor = appendDefaultEditor(".my-editor", {
         // The source image to load
-        src: "{% static 'index/my-image.jpeg' %}",
+        // "{% static 'index/my-image.jpeg' %}" original image static
+        src: "{{image.url}}",
 
         // This will set a square crop aspect ratio
         // imageCropAspectRatio: 1,
@@ -44,6 +59,12 @@
           ]
         ]
       });
+
+
+      // inp.onchange = function (reader) {
+      //   alert('asd')
+      //   inp.readAsDataURL(document.getElementById('imageupload').files[0]);
+      //   editor.loadImage = reader.target.result;}
 
       editor.on("load", (res) => {
         console.log("load", res);
