@@ -5,31 +5,98 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="{% static 'index/pintura.css' %}"/>
     <link rel="stylesheet" href="{% static 'index/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/index-style.css' %}">
+
+
   </head>
   <body>
-    <input type="file" id="imageupload" onchange="upload_image(this)">
+    <div id="topbar">
+      <label id="upload_image">UPLOAD IMAGE:</label>
+      <input type="file" id="imageupload" id="uploadbutton" onchange="upload_image(this)">
+      <label id="blankspace"></label>
+
+
+    </div>
+      <label id="usernamelabel">Logged in as:</label>
+      <label id="usernamefield"></label>
+      <button id="logoutbutton">LOGOUT</button>
+    <div id="topbar1">
+      <form action="" method="POST" enctype="multipart/form-data" id="saveform">
+      {% csrf_token %}
+      <label id="save_image">SAVE IMAGE:</label>
+      <input type="file" value="saveimage" onclick="save_image(this)" id='postout' name="pic">
+      <button type="submit" id="savepic">SAVE</button>
+      </form>
+    </div>
 
     <div class="my-editor"></div>
 
+    <img src="" class="hidden" name="output" id="outputimg">
     <script type="text/javascript">
     </script>
     <script type="module">
+
+      document.getElementById('usernamefield').innerHTML = '{{user}}';
+
+      document.getElementById("logoutbutton").onclick = function () {
+        location.href = "{% url 'Home'%}";
+      };
+
+
+      var preview;
+
       function upload_image(item){
         var img = new Image();
-        // alert(URL.createObjectURL(item.files[0]));
         img.src = URL.createObjectURL(item.files[0]);
         editor.src = img;
       };
       window.upload_image=upload_image;
-      alert('{{image.url}}');
-      var reader = new FileReader();
-      var inp = document.getElementById('imageupload');
+
       import { appendDefaultEditor } from "{% static 'index/pintura.js' %}";
+
+
+      const downloadFile = (file) => {
+              // Create a hidden link and set the URL using createObjectURL
+              const link = document.createElement('a');
+              link.style.display = 'none';
+              link.href = URL.createObjectURL(file);
+              link.download = file.name;
+
+              var reader = new FileReader();
+              reader.readAsDataURL(file); 
+              reader.onloadend = function() {
+                var base64data = reader.result;                
+                console.log(base64data);
+                var out=document.getElementById('postout');
+                out.value=base64data;
+              }              
+
+              // We need to add the link to the DOM for "click()" to work
+              document.body.appendChild(link);
+              link.click();
+
+              // To make this work on Firefox we need to wait a short moment before clean up
+              setTimeout(() => {
+                  URL.revokeObjectURL(link.href);
+                  link.parentNode.removeChild(link);
+              }, 0);
+          };
+
 
       const editor = appendDefaultEditor(".my-editor", {
         // The source image to load
         // "{% static 'index/my-image.jpeg' %}" original image static
         src: "{{image.url}}",
+
+        store: {
+                // Where to post the files to
+                url: './upload/',
+
+                // Which fields to post
+                dataset: (state) => [
+                    ['imageFile', state.dest, state.dest.name],
+                ],
+            },
 
         // This will set a square crop aspect ratio
         // imageCropAspectRatio: 1,
@@ -73,6 +140,18 @@
       editor.on("process", (res) => {
         console.log("process", res);
       });
+
+      editor.on('process', (imageState) => {
+        var outputfile = downloadFile(imageState.dest);
+        console.log(imageState.dest);
+        preview = new Image();
+        preview.src = URL.createObjectURL(dest);
+        document.body.appendChild(preview);
+      });
+      function save_image(item){
+          document.getElementById('postout').submit();
+        };
+      window.save_image=save_image;
     </script>
   </body>
 </html>

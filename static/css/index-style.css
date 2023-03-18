@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+#topbar{
+    display: inline-block;
+}
+#logoutbutton
+{
+    padding: 3px;
+    padding-right: 8px;
+    padding-left: 8px;
+    border-radius: 5px;
+    color: #292929;
+    background-color: #ffa31a;
+    margin-top: 3px;
+    margin-right: 100px;
+}
+#blankspace{
+    margin-right: 50px;
+}
+#usernamelabel{
+    padding-right: 5px;
+    margin-top: 3px;
+}
+#usernamefield{
+    padding-right: 5px;
+    margin-top: 3px;
+}
+#topbar1{
+    display: inline-block;
+    position: relative;
+}
+#savepic{
+    padding: 3px;
+    padding-right: 8px;
+    padding-left: 8px;
+    border-radius: 5px;
+    color: #292929;
+    background-color: #ffa31a;
+    margin-top: 3px;
+    margin-right: 100px;
+}
+#upload_image{
+    margin-left: 5px;
+
+}

@@ -11,3 +11,8 @@ class Image(models.Model):
     width = models.IntegerField()
     height = models.IntegerField()
     picture = models.FileField()
+
+class Image1(models.Model):
+    name = models.CharField(max_length=300)
+    useremail = models.CharField(max_length=300)
+    picture = models.FileField()
